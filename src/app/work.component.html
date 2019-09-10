@@ -1,0 +1,25 @@
+<div class="td id-td" [textContent]="work.id" (input)="work.id=$event.target.textContent"
+  [attr.contenteditable]="work.isEditable"></div>
+
+<div class="td item-td" [textContent]="work.item" (input)="work.item=$event.target.textContent"
+  [attr.contenteditable]="work.isEditable"></div>
+
+<div class="td due-date-td" [textContent]="work.dueDate" (input)="work.dueDate=$event.target.textContent"
+  [attr.contenteditable]="work.isEditable"></div>
+
+<div class="td resource-td" [textContent]="work.resourceCount" (input)="work.resourceCount=$event.target.textContent"
+  [attr.contenteditable]="work.isEditable"></div>
+
+<div class="td status-td">
+  <select class="select" [disabled]="!work.isEditable" [(ngModel)]="work.status" name="workstatus">
+    <option value="overdue">Overdue</option>
+    <option value="done">Done</option>
+    <option value="in_progress">In Progress</option>
+  </select>
+</div>
+
+<div class="td action-td">
+  <i class="fa fa-pencil-square-o" matTooltip="Edit the row" *ngIf="!work.isEditable" (click)="editRow()"></i>
+  <i class="fa fa-floppy-o" style="width: 16px" matTooltip="Save edits" *ngIf="work.isEditable" (click)="saveChanges()"></i>
+  <i class="fa fa-trash margin-left-20" matTooltip="Delete the row" (click)="deleteRow()"></i>
+</div>
